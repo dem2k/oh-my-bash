@@ -1,7 +1,5 @@
 # !!THIS IS NOT THE OFFICIAL Oh-My-Bash REPOSITORY!!
 
-Customized for MY needs!
-
 Oh My Bash is an open source, community-driven framework for managing your [bash](https://www.gnu.org/software/bash/) configuration.
 
 Sounds boring. Let's try again.
