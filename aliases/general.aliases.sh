@@ -62,7 +62,6 @@ function _omb_util_alias_select_nano {
 }
 _omb_util_alias_delayed nano force
 
-alias ll='ls -lAFh'                         # Preferred 'ls' implementation
 alias less='less -FSRXc'                    # Preferred 'less' implementation
 alias wget='wget -c'                        # Preferred 'wget' implementation (resume download)
 alias c='clear'                             # c:            Clear terminal display
