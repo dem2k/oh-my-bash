@@ -2,7 +2,7 @@
 
 This repository is **not the official version** of the original project. It has been heavily modified and adapted for my personal use cases.  
 
-If you are looking for the **official repository**, please visit: [https://github.com/ohmybash/oh-my-bash]
+If you are looking for the **official repository**, please visit: https://github.com/ohmybash/oh-my-bash
 
 Do **not** report issues or pull requests here that are intended for the official project.  
 
