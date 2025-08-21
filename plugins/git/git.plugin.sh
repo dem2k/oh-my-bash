@@ -55,9 +55,6 @@ function git_main_branch() {
 #
 # Aliases
 #
-# From Oh-My-Zsh:
-# https://github.com/ohmyzsh/ohmyzsh/blob/f36c6db0eac17b022eee87411e6996a5f5fc8457/plugins/git/git.plugin.zsh
-#
 
 alias g='command git'
 __git_complete g _git
@@ -159,7 +156,6 @@ function gccd() {
   lastarg=${lastarg##*/}
   cd "${lastarg%.git}"
 }
-#compdef _git gccd=git-clone
 __git_complete gccd _git_clone
 
 alias gclean='command git clean -fd'
@@ -169,12 +165,12 @@ alias gc!='command git commit --verbose --amend'
 __git_complete gc! _git_commit
 alias gc='command git commit --verbose'
 __git_complete gc _git_commit
-alias gca!='command git commit --verbose --all --amend'
-__git_complete gca! _git_commit
-alias gca='command git commit --verbose --all'
+alias gcva!='command git commit --verbose --all --amend'
+__git_complete gcva! _git_commit
+alias gcva='command git commit --verbose --all'
+__git_complete gcva _git_commit
+alias gca='command git commit --all --message'
 __git_complete gca _git_commit
-alias gcam='command git commit --all --message'
-__git_complete gcam _git_commit
 alias gcan!='command git commit --verbose --all --no-edit --amend'
 __git_complete gcan! _git_commit
 alias gcans!='command git commit --verbose --all --signoff --no-edit --amend'
@@ -216,12 +212,10 @@ __git_complete gdup _git_diff
 function gdnolock() {
   command git diff "$@" ":(exclude)package-lock.json" ":(exclude)*.lock"
 }
-#compdef _git gdnolock=git-diff
 __git_complete gdnolock _git_diff
 function gdv {
   command git diff -w "$@" | view -
 }
-#compdef _git gdv=git-diff
 __git_complete gdv _git_diff
 
 alias gdt='command git diff-tree --no-commit-id --name-only -r'
@@ -307,8 +301,8 @@ __git_complete gmtlvim _git_mergetool
 alias ggpull='command git pull origin "$(git_current_branch)"'
 __git_complete ggpull _git_pull
 alias ggpur='ggu'
-alias gl='command git pull'
-__git_complete gl _git_pull
+alias gpl='command git pull'
+__git_complete gpl _git_pull
 alias gluc='command git pull upstream "$(git_current_branch)"'
 __git_complete gluc _git_pull
 alias glum='command git pull upstream "$(git_main_branch)"'
@@ -342,16 +336,12 @@ function ggu {
   (($# != 1)) && b=$(git_current_branch)
   command git pull --rebase origin "${b:-$1}"
 }
-#compdef _git ggl=git-checkout
-#compdef _git ggpull=git-checkout
-#compdef _git ggpur=git-checkout
-#compdef _git ggu=git-checkout
 __git_complete ggu _git_pull
 
 alias ggpush='command git push origin "$(git_current_branch)"'
 __git_complete ggpush _git_push
-alias gp='command git push'
-__git_complete gp _git_push
+alias gpu='command git push'
+__git_complete gpu _git_push
 alias gpd='command git push --dry-run'
 __git_complete gpd _git_push
 alias gpf!='command git push --force'
@@ -366,12 +356,8 @@ alias gpsup='command git push --set-upstream origin "$(git_current_branch)"'
 __git_complete gpsup _git_push
 alias gpsupf='command git push --set-upstream origin "$(git_current_branch)" --force-with-lease'
 __git_complete gpsupf _git_push
-alias gpu='command git push upstream'
-__git_complete gpu _git_push
 alias gpv='command git push --verbose'
 __git_complete gpv _git_push
-#is-at-least 2.30 "$git_version" && alias gpf='git push --force-with-lease --force-if-includes'
-#is-at-least 2.30 "$git_version" && alias gpsupf='git push --set-upstream origin "$(git_current_branch)" --force-with-lease --force-if-includes'
 function ggf {
   (($# != 1)) && local b=$(git_current_branch)
   command git push --force origin "${b:=$1}"
@@ -399,12 +385,6 @@ function ggpnp {
   fi
 }
 __git_complete ggpnp _git_push
-#compdef _git ggf=git-checkout
-#compdef _git ggfl=git-checkout
-#compdef _git ggp=git-checkout
-#compdef _git ggpnp=git-checkout
-#compdef _git ggpush=git-checkout
-#compdef _git gpoat=git-push
 
 alias grb='command git rebase'
 __git_complete grb _git_rebase
@@ -473,7 +453,6 @@ __git_complete grmc _git_rm
 
 alias gcount='command git shortlog --summary --numbered'
 __git_complete gcount _git_shortlog
-#compdef _git gcount complete -F _git gcount
 
 alias gsh='command git show'
 __git_complete gsh _git_show
@@ -559,7 +538,3 @@ __git_complete gwtrm _git_worktree
 
 alias gk='\gitk --all --branches'
 alias gke='\gitk --all $(git log --walk-reflogs --pretty=%h)'
-# alias gk='\gitk --all --branches &!'
-# alias gke='\gitk --all $(git log --walk-reflogs --pretty=%h) &!'
-#compdef _git gk='command gitk'
-#compdef _git gke='command gitk'
