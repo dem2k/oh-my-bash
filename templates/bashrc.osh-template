@@ -4,6 +4,9 @@ case $- in
     *) return;;
 esac
 
+# fallback terminal
+export TERM=xterm-256color
+
 # Path to your oh-my-bash installation.
 export OSH=~/.oh-my-bash
 
