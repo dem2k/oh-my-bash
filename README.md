@@ -12,7 +12,9 @@ Oh My Bash is installed by running one of the following commands in your termina
 
 ### install dependensies (debian / ubuntu)
 
+```shell
 apt update && apt upgrade && apt install -y curl git
+```
 
 ### via curl
 
