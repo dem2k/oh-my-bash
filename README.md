@@ -10,6 +10,10 @@ Do **not** report issues or pull requests here that are intended for the officia
 
 Oh My Bash is installed by running one of the following commands in your terminal.
 
+### install dependensies (debian / ubuntu)
+
+apt update && apt upgrade && apt install -y curl git
+
 ### via curl
 
 ```shell
