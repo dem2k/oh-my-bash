@@ -161,7 +161,7 @@ function _omb_install_copy_config_dirs {
   
   # Create ~/.config if it doesn't exist
   if [[ ! -d "$config_target" ]]; then
-    printf '%s\n' "${BLUE}Creating ~/.config directory...${NORMAL}"
+    # printf '%s\n' "${BLUE}Creating ~/.config directory...${NORMAL}"
     _omb_install_run mkdir -p "$config_target"
   fi
   
@@ -172,7 +172,7 @@ function _omb_install_copy_config_dirs {
       local target_dir="$config_target/$dir_name"
       
       if [[ ! -e "$target_dir" ]]; then
-        printf '%s\n' "${GREEN}Copying config for $dir_name...${NORMAL}"
+        # printf '%s\n' "${GREEN}Copying config for $dir_name...${NORMAL}"
         _omb_install_run cp -r "$config_dir" "$target_dir"
       else
         printf '%s\n' "${YELLOW}Config directory $target_dir already exists, skipping...${NORMAL}"
