@@ -159,9 +159,7 @@ function _omb_install_copy_config_dirs {
   
   printf '%s\n' "${BLUE}Copying Oh My Bash config files...${NORMAL}"
   
-  # Create ~/.config if it doesn't exist
   if [[ ! -d "$config_target" ]]; then
-    # printf '%s\n' "${BLUE}Creating ~/.config directory...${NORMAL}"
     _omb_install_run mkdir -p "$config_target"
   fi
   
@@ -172,7 +170,6 @@ function _omb_install_copy_config_dirs {
       local target_dir="$config_target/$dir_name"
       
       if [[ ! -e "$target_dir" ]]; then
-        # printf '%s\n' "${GREEN}Copying config for $dir_name...${NORMAL}"
         _omb_install_run cp -r "$config_dir" "$target_dir"
       else
         printf '%s\n' "${YELLOW}Config directory $target_dir already exists, skipping...${NORMAL}"
@@ -220,7 +217,6 @@ export OSH='${OSH//\'/\'\\\'\'}'
   set +e
   _omb_install_banner
   printf '%s\n' "${GREEN}Please look over the ~/.bashrc file to select a theme, plugins, completions, aliases, and options${NORMAL}"
-  printf '%s\n' "${BLUE}${BOLD}To keep up on the latest news and updates, follow us on GitHub: https://github.com/ohmybash/oh-my-bash${NORMAL}"
 
   if [[ :$install_opts: == *:dry-run:* ]]; then
     printf '%s\n' "$GREEN$BOLD[dryrun]$NORMAL Sample bashrc is created at '$BOLD$HOME/.bashrc-ombtemp$NORMAL'."
@@ -247,7 +243,6 @@ function _omb_install_system_bashrc {
   _omb_install_banner
   printf '%s\n' "${GREEN}To enable Oh My Bash, please copy '${BOLD}$OSH/bashrc${NORMAL}${GREEN}' to '${BOLD}~/.bashrc${NORMAL}${GREEN}'.${NORMAL}"
   printf '%s\n' "${GREEN}Please look over the ~/.bashrc file to select a theme, plugins, completions, aliases, and options${NORMAL}"
-  printf '%s\n' "${BLUE}${BOLD}To keep up on the latest news and updates, follow us on GitHub: https://github.com/dem2k/oh-my-bash${NORMAL}"
 }
 
 function _omb_install_main {
