@@ -144,6 +144,45 @@ function _omb_install_has_proper_bash_profile {
   return 1
 }
 
+## @fn _omb_install_copy_config_dirs
+##   @var[in] OSH
+##   @var[in] install_opts
+function _omb_install_copy_config_dirs {
+  local config_source="$OSH/dot_config"
+  local config_target="$HOME/.config"
+  
+  # Check if source directory exists
+  if [[ ! -d "$config_source" ]]; then
+    printf '%s\n' "${YELLOW}No dot_config directory found in Oh My Bash installation, skipping config copy.${NORMAL}"
+    return 0
+  fi
+  
+  printf '%s\n' "${BLUE}Copying Oh My Bash config files...${NORMAL}"
+  
+  # Create ~/.config if it doesn't exist
+  if [[ ! -d "$config_target" ]]; then
+    printf '%s\n' "${BLUE}Creating ~/.config directory...${NORMAL}"
+    _omb_install_run mkdir -p "$config_target"
+  fi
+  
+  # Iterate through all subdirectories in dot_config
+  for config_dir in "$config_source"/*; do
+    if [[ -d "$config_dir" ]]; then
+      local dir_name=$(basename "$config_dir")
+      local target_dir="$config_target/$dir_name"
+      
+      if [[ ! -e "$target_dir" ]]; then
+        printf '%s\n' "${GREEN}Copying config for $dir_name...${NORMAL}"
+        _omb_install_run cp -r "$config_dir" "$target_dir"
+      else
+        printf '%s\n' "${YELLOW}Config directory $target_dir already exists, skipping...${NORMAL}"
+      fi
+    fi
+  done
+  
+  printf '%s\n' "${GREEN}Config files copied successfully.${NORMAL}"
+}
+
 ## @fn _omb_install_user_bashrc
 ##   @var[in] install_opts
 ##   @var[in] OSH
@@ -176,6 +215,8 @@ export OSH='${OSH//\'/\'\\\'\'}'
     fi
   fi
 
+  _omb_install_copy_config_dirs
+  
   set +e
   _omb_install_banner
   printf '%s\n' "${GREEN}Please look over the ~/.bashrc file to select a theme, plugins, completions, aliases, and options${NORMAL}"
