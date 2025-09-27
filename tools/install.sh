@@ -176,6 +176,14 @@ function _omb_install_copy_config_dirs {
       fi
     fi
   done
+
+if [[ ! -e "$HOME/.inputrc" ]]; then
+  cat > "$HOME/.inputrc" <<'EOF'
+$include /etc/inputrc
+"\C-H": backward-kill-word
+EOF
+  chmod 644 "$HOME/.inputrc"
+fi
   
   printf '%s\n' "${GREEN}Config files copied successfully.${NORMAL}"
 }
